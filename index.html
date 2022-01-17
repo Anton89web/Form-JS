@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="scss/style.scss">
+    <title>Form+JS</title>
+    <style>
+        h3 {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="calc">
+        <div class="container">
+            <h2 style="text-align: center; color: tomato;">Расчет стомости банкета</h2>
+            <form action="">
+                <h3>Укажите количесво блюд:</h3>
+                Салат цезарь <input type="checkbox" name="csalat" id=""> <input type="text" size="6" maxlength="8"
+                    name="salat"><br>
+                Коньяк <input type="checkbox" name="ckonyak" id=""><input type="text" size="6" maxlength="8"
+                    name="konyak"><br>
+                Лимон<input type="checkbox" name="climon" id=""><input type="text" size="6" maxlength="8"
+                    name="limon"><br>
+                Сумма без скидки<input type="text" size="10" maxlength="8" name="result">
+                Скидка<input type="text" size="10" maxlength="8" name="sale">
+                К оплате<input type="text" size="10" maxlength="8" name="result2">
+
+
+                <input type="button" value="Расчитать" onclick="calc(salat,konyak,limon,result, csalat, ckonyak, climon, sale, result2)">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function calc(salat, konyak, limon, result, csalat, ckonyak, climon, sale, result2 ) {
+            let x1 = 0,
+                x2 = 0,
+                x3 = 0,
+                res = 0,
+                prSalat = 300,
+                prKonyak = 2000,
+                saleValue = 0,
+                prlimon = 30;
+            if(csalat.checked==true && salat.value!="")
+                x1=+(salat.value);
+            if(ckonyak.checked==true && konyak.value!="")
+                x2=+(konyak.value);
+            if(climon.checked==true && limon.value!="")
+                x3=+(limon.value);
+
+            
+            // x1 = +(salat.value);
+            // x2 = +(konyak.value);
+            // x3 = +(limon.value);
+            res = x1 * prSalat + x2 * prKonyak + x3 * prlimon;
+
+            if(res>=5000)
+            saleValue=res/10;
+
+
+
+            sale.value = saleValue;
+            result.value = res;
+            result2.value = res - saleValue;
+        }
+    </script>
+</body>
+
+</html>
